@@ -37,7 +37,7 @@ const Update = ({ bookID, setVisibleAddBook }) => {
         onClick={handleClose}
         className="fixed inset-0 bg-black/75 z-50 backdrop-blur-sm flex items-center justify-center">
         <div className="bg-white flex items-center w-2/5 justify-center flex-col py-6 px-10 space-y-10 rounded-[15px]">
-          <h1 className="font-bold text-[50px] text-cyan-700">Add Book</h1>
+          <h1 className="font-bold text-[50px] text-cyan-700">Update Book</h1>
           <div className="flex flex-col w-5/6 space-y-5 focus:border-none border-none">
             <div>
               <label className="block mb-2 text-sm font-medium text-blue-500">
