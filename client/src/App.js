@@ -9,14 +9,14 @@ function App() {
       <div className="top-0 left-0 w-4/5 flex-none flex flex-row justify-between items-center my-4 py-4 px-10 shadow-md rounded-[10px] bg-blue-400/75 mb-10">
         <h1 className="  text-white font-pacifico text-[50px] ">Book Shop</h1>
         <button
-          className="bg-blue-500 p-3 rounded-[10px] hover:bg-blue-600 transition-all duration-200 ease-in-out text-white hover:scale-105 "
+          className="bg-blue-500 p-3 rounded-[10px] hover:bg-blue-600 duration-200 ease-in-out text-white hover:scale-105 "
           onClick={() => setVisibleAddBook(true)}>
           Add Book
         </button>
       </div>
       {visibleAddBook && (
         <div>
-          <Add />
+          <Add setVisibleAddBook={setVisibleAddBook} />
         </div>
       )}
       <Books />

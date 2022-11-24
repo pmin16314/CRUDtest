@@ -3,16 +3,17 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import Add from "./Add";
+import Update from "./Update";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
+  const [visibleUpdateBook, setVisibleUpdateBook] = useState(false);
 
+  console.log(visibleUpdateBook);
   useEffect(() => {
     const fetchAllBooks = async () => {
       try {
         const res = await axios.get("http://localhost:3000/books");
-        console.log(res);
         setBooks(res.data);
       } catch (error) {
         console.log(error);
@@ -20,12 +21,12 @@ const Books = () => {
     };
 
     fetchAllBooks();
-  }, [books]);
+  }, []);
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/books/${id}`);
-      console.log("aasasa");
+      const res = await axios.delete(`http://localhost:3000/books/${id}`);
+      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -42,10 +43,29 @@ const Books = () => {
             <h2 className="font-bold text-[24px] text-blue-500 mb-5 text-center">
               {book.title}
             </h2>
-            <p>{book.description}</p>
-
-            <button>Update </button>
-            <button onClick={() => handleDelete(book.id)}>Delete</button>
+            <p className="text-justify text-[15px]">{book.description}</p>
+            <div className="space-x-6 mt-5 ">
+              <button
+                onClick={() => setVisibleUpdateBook(true)}
+                className="py-2 px-3 bg-green-700 hover:bg-green-500 text-white
+                rounded-lg duration-100 ease-in-out">
+                {" "}
+                Update{" "}
+              </button>
+              {visibleUpdateBook && (
+                <div>
+                  <Update
+                    bookID={book.id}
+                    setVisibleAddBook={setVisibleUpdateBook}
+                  />
+                </div>
+              )}
+              <button
+                className="py-2 px-3 bg-red-700 hover:bg-red-500 text-white rounded-lg duration-100 ease-in-out"
+                onClick={() => handleDelete(book.id)}>
+                Delete
+              </button>
+            </div>
           </div>
         ))}
       </div>
